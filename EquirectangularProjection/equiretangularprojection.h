@@ -11,6 +11,8 @@ class EquiretangularProjection:public QGLWidget, protected QOpenGLFunctions_3_3_
 public:
     EquiretangularProjection(QWidget* parent = 0);
     bool drawSphere;
+    GLfloat scale;
+    GLfloat angle;
 
 private:
     GLuint VBO, VAO, EBO;

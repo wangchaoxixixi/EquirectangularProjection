@@ -17,6 +17,8 @@ public:
     EquiretangularProjection* ep;
 private slots:
     void on_isSphere_checkBox_clicked();
+    void on_scale_horizontalSlider_valueChanged(int value);
+    void on_angle_horizontalSlider_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;

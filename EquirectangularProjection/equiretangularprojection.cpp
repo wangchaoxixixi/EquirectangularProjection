@@ -15,6 +15,8 @@ EquiretangularProjection::EquiretangularProjection(QWidget *parent):
     radius = 50;
     x0 = 0;
     y0 = 0;
+    scale = 1.0;
+    angle = 0.0;
 }
 
 void EquiretangularProjection::initializeGL()
@@ -90,7 +92,7 @@ void EquiretangularProjection::initializeGL()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // Load, create texture and generate mipmaps
     QImage image_logo;
-    image_logo.load("data//logo.jpeg");
+    image_logo.load("data//logo2.jpeg");
     w_logo = image_logo.width();
     h_logo = image_logo.height();
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w_logo, h_logo, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_logo.bits());
@@ -132,6 +134,8 @@ void EquiretangularProjection::paintGL()
     shader_cal->Use();
     glUniform2f(glGetUniformLocation(shader_cal->Program, "size_src"), width, height);
     glUniform2f(glGetUniformLocation(shader_cal->Program, "size_logo"), w_logo, h_logo);
+    glUniform1f(glGetUniformLocation(shader_cal->Program, "scale"), scale);
+    glUniform1f(glGetUniformLocation(shader_cal->Program, "angle"), angle);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture_src);
